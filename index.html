@@ -1,0 +1,1001 @@
+<html><head><base href="workspace.html">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>BEREK Consulting - Espace de travail</title>
+<link href="https://fonts.googleapis.com/css2?family=Raleway:wght@300;400;600;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --primary-color: #2c3e50;
+    --secondary-color: #34495e;
+    --accent-color: #3498db;
+    --text-color: #333;
+    --bg-color: #f5f7fa;
+  }
+
+  body {
+    font-family: 'Raleway', sans-serif;
+    line-height: 1.6;
+    margin: 0;
+    padding: 0;
+    background-color: var(--bg-color);
+    color: var(--text-color);
+  }
+
+  .container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 2rem;
+  }
+
+  header {
+    background-color: var(--primary-color);
+    color: white;
+    padding: 1rem 0;
+  }
+
+  .header-content {
+    display: grid;
+    grid-template-columns: auto 1fr auto;
+    gap: 1rem;
+    align-items: center;
+  }
+
+  .logo-container {
+    display: flex;
+    align-items: center;
+  }
+
+  .logo-text {
+    font-size: 1.5rem;
+    font-weight: 700;
+    margin-left: 1rem;
+  }
+
+  .company-details {
+    font-size: 0.8rem;
+    line-height: 1.2;
+    text-align: center;
+  }
+
+  .company-details p {
+    margin: 0;
+  }
+
+  nav ul {
+    list-style-type: none;
+    padding: 0;
+    display: flex;
+  }
+
+  nav ul li {
+    margin-left: 1rem;
+  }
+
+  nav ul li a {
+    color: white;
+    text-decoration: none;
+    transition: color 0.3s ease;
+  }
+
+  nav ul li a:hover {
+    color: var(--accent-color);
+  }
+
+  main {
+    margin-top: 2rem;
+  }
+
+  h1, h2 {
+    color: var(--primary-color);
+  }
+
+  .section {
+    background-color: white;
+    border-radius: 8px;
+    padding: 2rem;
+    margin-bottom: 2rem;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+  }
+
+  form {
+    display: grid;
+    gap: 1rem;
+  }
+
+  label {
+    font-weight: 600;
+    color: var(--secondary-color);
+  }
+
+  input[type="text"],
+  input[type="number"],
+  input[type="date"],
+  input[type="time"],
+  select,
+  textarea {
+    width: 100%;
+    padding: 0.5rem;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    font-family: inherit;
+  }
+
+  button {
+    background-color: var(--accent-color);
+    color: white;
+    padding: 0.75rem 1rem;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 1rem;
+    transition: background-color 0.3s ease;
+  }
+
+  button:hover {
+    background-color: #2980b9;
+  }
+
+  .checkbox-container {
+    display: flex;
+    align-items: center;
+  }
+
+  .checkbox-container input[type="checkbox"] {
+    margin-right: 0.5rem;
+  }
+
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 1rem;
+  }
+
+  th, td {
+    border: 1px solid #ddd;
+    padding: 0.5rem;
+    text-align: left;
+  }
+
+  th {
+    background-color: var(--secondary-color);
+    color: white;
+  }
+
+  tr:nth-child(even) {
+    background-color: #f2f2f2;
+  }
+
+  @media (max-width: 768px) {
+    .header-content {
+      grid-template-columns: 1fr;
+      text-align: center;
+    }
+
+    .logo-container, .company-details, nav {
+      margin-bottom: 1rem;
+    }
+
+    nav ul {
+      justify-content: center;
+    }
+  }
+
+  #login-form {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.8);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+  }
+
+  .login-container {
+    background-color: white;
+    padding: 40px;
+    border-radius: 8px;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.2);
+    text-align: center;
+    max-width: 400px;
+    width: 100%;
+  }
+
+  .login-container h2 {
+    color: #2c3e50;
+    margin-bottom: 10px;
+  }
+
+  .login-container p {
+    color: #7f8c8d;
+    margin-bottom: 20px;
+  }
+
+  .input-group {
+    margin-bottom: 15px;
+    position: relative;
+  }
+
+  .toggle-password {
+    position: absolute;
+    right: 10px;
+    top: 50%;
+    transform: translateY(-50%);
+    background: none;
+    border: none;
+    color: #3498db;
+    cursor: pointer;
+    font-size: 14px;
+  }
+
+</style>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf-autotable/3.5.20/jspdf.plugin.autotable.min.js"></script>
+</head>
+<body>
+  <header>
+    <div class="container header-content">
+      <div class="logo-container">
+        <svg width="40" height="40" viewBox="0 0 50 50">
+          <defs>
+            <linearGradient id="grad1" x1="0%" y1="0%" x2="100%" y2="100%">
+              <stop offset="0%" style="stop-color:#3498db;stop-opacity:1"></stop>
+              <stop offset="100%" style="stop-color:#2c3e50;stop-opacity:1"></stop>
+            </linearGradient>
+          </defs>
+          <path d="M25,2 A23,23 0 0,1 25,48 A23,23 0 0,1 25,2 Z" fill="url(#grad1)"></path>
+          <path d="M16,15 L34,15 A9,9 0 0,1 34,33 L16,33 A9,9 0 0,1 16,15 Z" fill="white"></path>
+          <text x="50%" y="50%" dominant-baseline="middle" text-anchor="middle" fill="#2c3e50" font-size="18" font-weight="bold" font-family="Raleway">BC</text>
+        </svg>
+        <span class="logo-text">BEREK Consulting</span>
+      </div>
+      <div class="company-details">
+        <p>5 RUE AMBROISE CROIZAT, 08000 VILLERS-SEMEUSE</p>
+        <p>SIRET : 500 359 880 00027</p>
+        <p>+33 695 608 898</p>
+        <p>vp.philippeberek@gmail.com</p>
+      </div>
+      <nav>
+        <ul>
+          <li><a href="#nouveau-document">Nouveau Document</a></li>
+          <li><a href="#base-clients">Base Clients</a></li>
+          <li><a href="#liste-documents">Liste des Documents</a></li>
+          <li><button id="logout-button" style="display: none;">Déconnexion</button></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+  
+  <div id="login-form" style="display: flex;">
+    <div class="login-container">
+      <svg width="60" height="60" viewBox="0 0 50 50">
+        <defs>
+          <linearGradient id="grad1" x1="0%" y1="0%" x2="100%" y2="100%">
+            <stop offset="0%" style="stop-color:#3498db;stop-opacity:1"></stop>
+            <stop offset="100%" style="stop-color:#2c3e50;stop-opacity:1"></stop>
+          </linearGradient>
+        </defs>
+        <path d="M25,2 A23,23 0 0,1 25,48 A23,23 0 0,1 25,2 Z" fill="url(#grad1)"></path>
+        <path d="M16,15 L34,15 A9,9 0 0,1 34,33 L16,33 A9,9 0 0,1 16,15 Z" fill="white"></path>
+        <text x="50%" y="50%" dominant-baseline="middle" text-anchor="middle" fill="#2c3e50" font-size="18" font-weight="bold" font-family="Raleway">BC</text>
+      </svg>
+      <h2>Bienvenue</h2>
+      <p>Veuillez vous identifier</p>
+      <form id="login-form-element">
+        <div class="input-group">
+          <input type="text" id="username" name="username" placeholder="Identifiant" required>
+        </div>
+        <div class="input-group">
+          <input type="password" id="password" name="password" placeholder="Mot de passe" required>
+          <button type="button" id="toggle-password" class="toggle-password">Afficher</button>
+        </div>
+        <button type="submit">Se connecter</button>
+      </form>
+    </div>
+  </div>
+
+  <main class="container">
+    <section id="nouveau-document" class="section">
+      <h2>Nouveau Document</h2>
+      <form id="document-form">
+        <label for="numero-document">Numéro de devis/facture:</label>
+        <input type="text" id="numero-document" name="numero-document" required>
+
+        <label for="nom-client">Nom client:</label>
+        <input type="text" id="nom-client" name="nom-client" list="clients-list" required>
+        <datalist id="clients-list">
+          <!-- Client names will be populated here -->
+        </datalist>
+
+        <label for="adresse-client">Adresse:</label>
+        <input type="text" id="adresse-client" name="adresse-client" required>
+
+        <label for="code-postal">Code Postal:</label>
+        <input type="text" id="code-postal" name="code-postal" required>
+
+        <label for="ville">Ville:</label>
+        <input type="text" id="ville" name="ville" required>
+
+        <label for="tarif-horaire">Tarif horaire:</label>
+        <input type="number" id="tarif-horaire" name="tarif-horaire" min="0" step="0.01" required>
+
+        <label for="quantite-heure">Quantité heure:</label>
+        <input type="number" id="quantite-heure" name="quantite-heure" min="0" step="0.5" required>
+
+        <label for="langue-prestation">Langue de la prestation:</label>
+        <select id="langue-prestation" name="langue-prestation" required>
+          <option value="Français">Français</option>
+          <option value="Anglais">Anglais</option>
+          <option value="Allemand">Allemand</option>
+        </select>
+
+        <label for="heure-debut">Heure de début de la prestation:</label>
+        <input type="time" id="heure-debut" name="heure-debut" required>
+
+        <div class="checkbox-container">
+          <input type="checkbox" id="frais-deplacement" name="frais-deplacement">
+          <label for="frais-deplacement">Frais de déplacement</label>
+        </div>
+
+        <input type="number" id="frais-deplacement-montant" name="frais-deplacement-montant" min="0" step="0.01" placeholder="Montant des frais de déplacement">
+
+        <label for="date-prestation">Date de la prestation:</label>
+        <input type="date" id="date-prestation" name="date-prestation" required>
+
+        <label for="prestation">Prestation:</label>
+        <input type="text" id="prestation" name="prestation" list="prestations" required>
+        <datalist id="prestations">
+          <!-- Options will be dynamically populated by JavaScript -->
+        </datalist>
+
+        <button type="button" onclick="genererDevis()">Générer Devis</button>
+        <button type="button" onclick="genererFacture()">Générer Facture</button>
+      </form>
+    </section>
+
+    <section id="base-clients" class="section">
+      <h2>Base de données clients</h2>
+      <form id="client-form">
+        <label for="new-client-name">Nom du client:</label>
+        <input type="text" id="new-client-name" name="new-client-name" required>
+
+        <label for="new-client-address">Adresse:</label>
+        <input type="text" id="new-client-address" name="new-client-address" required>
+
+        <label for="new-client-postal">Code Postal:</label>
+        <input type="text" id="new-client-postal" name="new-client-postal" required>
+
+        <label for="new-client-city">Ville:</label>
+        <input type="text" id="new-client-city" name="new-client-city" required>
+
+        <button type="button" onclick="ajouterClient()">Ajouter Client</button>
+      </form>
+
+      <table id="clients-table">
+        <thead>
+          <tr>
+            <th>Nom</th>
+            <th>Adresse</th>
+            <th>Code Postal</th>
+            <th>Ville</th>
+            <th>Actions</th>
+          </tr>
+        </thead>
+        <tbody>
+          <!-- Les clients seront ajoutés ici dynamiquement -->
+        </tbody>
+      </table>
+    </section>
+
+    <section id="prestations-predefinies" class="section">
+      <h2>Prestations prédéfinies</h2>
+      <form id="visite-guidee-form">
+        <label for="new-visite-name">Nom de la prestation:</label>
+        <input type="text" id="new-visite-name" name="new-visite-name" required>
+
+        <label for="new-visite-description">Description:</label>
+        <textarea id="new-visite-description" name="new-visite-description" required></textarea>
+
+        <label for="new-visite-duration">Durée (en heures):</label>
+        <input type="number" id="new-visite-duration" name="new-visite-duration" min="0.5" step="0.5" required>
+
+        <button type="button" onclick="ajouterVisiteGuidee()">Ajouter Prestation</button>
+      </form>
+
+      <table id="visites-guidees-table">
+        <thead>
+          <tr>
+            <th>Nom</th>
+            <th>Description</th>
+            <th>Durée</th>
+            <th>Actions</th>
+          </tr>
+        </thead>
+        <tbody>
+          <!-- Les visites guidées seront ajoutées ici dynamiquement -->
+        </tbody>
+      </table>
+    </section>
+
+    <section id="liste-documents" class="section">
+      <h2>Liste des Documents</h2>
+      <table id="documents-table">
+        <thead>
+          <tr>
+            <th>Numéro</th>
+            <th>Type</th>
+            <th>Client</th>
+            <th>Date</th>
+            <th>Montant</th>
+            <th>Mention TVA</th>
+            <th>Langue</th>
+            <th>Actions</th>
+          </tr>
+        </thead>
+        <tbody>
+          <!-- Les documents seront ajoutés ici dynamiquement -->
+        </tbody>
+      </table>
+    </section>
+  </main>
+
+  <script>
+    let isLoggedIn = false;
+
+    function toggleLogin() {
+      document.getElementById('login-form').style.display = 'flex';
+    }
+
+    function login(username, password) {
+      if (username === 'MelvinTheBest' && password === 'MySonILoveYou') {
+        isLoggedIn = true;
+        document.getElementById('login-form').style.display = 'none';
+        showContent();
+        document.getElementById('logout-button').style.display = 'inline-block';
+        alert('Connecté avec succès !');
+      } else {
+        alert('Identifiants invalides');
+      }
+    }
+
+    function logout() {
+      isLoggedIn = false;
+      hideContent();
+      document.getElementById('login-form').style.display = 'flex';
+      document.getElementById('logout-button').style.display = 'none';
+      document.getElementById('username').value = '';
+      document.getElementById('password').value = '';
+      alert('Déconnecté avec succès !');
+    }
+
+    function showContent() {
+      document.querySelectorAll('main, nav').forEach(el => el.style.display = 'block');
+      document.getElementById('logout-button').style.display = 'inline-block';
+    }
+
+    function hideContent() {
+      document.querySelectorAll('main, nav').forEach(el => el.style.display = 'none');
+      document.getElementById('logout-button').style.display = 'none';
+    }
+
+    document.getElementById('login-form-element').addEventListener('submit', function(e) {
+      e.preventDefault();
+      const username = document.getElementById('username').value;
+      const password = document.getElementById('password').value;
+      login(username, password);
+    });
+
+    function populateClientDetails() {
+      const selectedClientName = document.getElementById('nom-client').value;
+      const clients = loadClientsFromLocalStorage();
+      const selectedClient = clients.find(client => client.nom === selectedClientName);
+
+      if (selectedClient) {
+        document.getElementById('adresse-client').value = selectedClient.adresse;
+        document.getElementById('code-postal').value = selectedClient.codePostal;
+        document.getElementById('ville').value = selectedClient.ville;
+      } else {
+        document.getElementById('adresse-client').value = '';
+        document.getElementById('code-postal').value = '';
+        document.getElementById('ville').value = '';
+      }
+    }
+
+    document.addEventListener('DOMContentLoaded', function() {
+      const togglePassword = document.getElementById('toggle-password');
+      const password = document.getElementById('password');
+
+      togglePassword.addEventListener('click', function() {
+        const type = password.getAttribute('type') === 'password' ? 'text' : 'password';
+        password.setAttribute('type', type);
+        this.textContent = type === 'password' ? 'Afficher' : 'Masquer';
+      });
+
+      const nomClientInput = document.getElementById('nom-client');
+      nomClientInput.addEventListener('change', populateClientDetails);
+      nomClientInput.addEventListener('input', populateClientDetails);
+
+      document.getElementById('nom-client').addEventListener('change', populateClientDetails);
+      document.getElementById('logout-button').addEventListener('click', logout);
+    });
+
+    window.onload = function() {
+      hideContent();
+      document.getElementById('login-form').style.display = 'flex';
+      document.getElementById('logout-button').style.display = 'none';
+      chargerClients();
+      ajouterPrestationsPredefinies();
+      chargerPrestations();
+      
+      document.getElementById('frais-deplacement').addEventListener('change', function() {
+        const montantInput = document.getElementById('frais-deplacement-montant');
+        montantInput.style.display = this.checked ? 'block' : 'none';
+      });
+    };
+
+    function saveClientsToLocalStorage(clients) {
+      localStorage.setItem('clients', JSON.stringify(clients));
+    }
+
+    function loadClientsFromLocalStorage() {
+      const clients = JSON.parse(localStorage.getItem('clients')) || [];
+      return clients;
+    }
+
+    function saveDocumentsToLocalStorage(documents) {
+      localStorage.setItem('documents', JSON.stringify(documents));
+    }
+
+    function loadDocumentsFromLocalStorage() {
+      return JSON.parse(localStorage.getItem('documents')) || [];
+    }
+
+    function ajouterDocument(doc) {
+      const documents = loadDocumentsFromLocalStorage();
+      documents.push(doc);
+      saveDocumentsToLocalStorage(documents);
+      afficherDocuments();
+    }
+
+    function afficherDocuments() {
+      const documents = loadDocumentsFromLocalStorage();
+      const table = document.getElementById('documents-table').getElementsByTagName('tbody')[0];
+      table.innerHTML = '';
+      
+      documents.forEach(doc => {
+        const newRow = table.insertRow();
+        newRow.innerHTML = `
+          <td>${doc['numero-document']}</td>
+          <td>${doc.type}</td>
+          <td>${doc['nom-client']}</td>
+          <td>${doc['date-prestation']}</td>
+          <td>${doc.montant} €</td>
+          <td>${doc.tvaMention}</td>
+          <td>${doc['langue-prestation']}</td>
+          <td>
+            <button onclick="visualiserDocument('${doc['numero-document']}')">Visualiser</button>
+            <button onclick="supprimerDocument('${doc['numero-document']}')">Supprimer</button>
+          </td>
+        `;
+      });
+    }
+
+    function visualiserDocument(numero) {
+      const documents = loadDocumentsFromLocalStorage();
+      const doc = documents.find(d => d['numero-document'] === numero);
+      
+      if (doc) {
+        genererPDF(doc);
+      } else {
+        alert(`Document ${numero} non trouvé.`);
+      }
+    }
+
+    function supprimerDocument(numero) {
+      if (confirm(`Êtes-vous sûr de vouloir supprimer le document ${numero} ?`)) {
+        let documents = loadDocumentsFromLocalStorage();
+        documents = documents.filter(d => d['numero-document'] !== numero);
+        saveDocumentsToLocalStorage(documents);
+        afficherDocuments();
+        alert(`Document ${numero} supprimé avec succès.`);
+      }
+    }
+
+    function ajouterClient() {
+      const form = document.getElementById('client-form');
+      const client = {
+        id: Date.now(),
+        nom: form['new-client-name'].value,
+        adresse: form['new-client-address'].value,
+        codePostal: form['new-client-postal'].value,
+        ville: form['new-client-city'].value
+      };
+
+      const table = document.getElementById('clients-table').getElementsByTagName('tbody')[0];
+      const newRow = table.insertRow();
+      newRow.innerHTML = `
+        <td>${client.nom}</td>
+        <td>${client.adresse}</td>
+        <td>${client.codePostal}</td>
+        <td>${client.ville}</td>
+        <td>
+          <button onclick="editerClient(${client.id})">Éditer</button>
+          <button onclick="supprimerClient(${client.id})">Supprimer</button>
+        </td>
+      `;
+
+      const clients = loadClientsFromLocalStorage();
+      clients.push(client);
+      saveClientsToLocalStorage(clients);
+
+      form.reset();
+      alert('Client ajouté avec succès !');
+      chargerClients();
+    }
+
+    function editerClient(id) {
+      const clients = loadClientsFromLocalStorage();
+      const client = clients.find(c => c.id === id);
+      
+      if (client) {
+        document.getElementById('new-client-name').value = client.nom;
+        document.getElementById('new-client-address').value = client.adresse;
+        document.getElementById('new-client-postal').value = client.codePostal;
+        document.getElementById('new-client-city').value = client.ville;
+        
+        const addButton = document.querySelector('#client-form button');
+        addButton.textContent = 'Modifier Client';
+        addButton.onclick = function() { modifierClient(id); };
+      }
+    }
+
+    function modifierClient(id) {
+      const clients = loadClientsFromLocalStorage();
+      const index = clients.findIndex(c => c.id === id);
+      
+      if (index !== -1) {
+        clients[index] = {
+          id: id,
+          nom: document.getElementById('new-client-name').value,
+          adresse: document.getElementById('new-client-address').value,
+          codePostal: document.getElementById('new-client-postal').value,
+          ville: document.getElementById('new-client-city').value
+        };
+        
+        saveClientsToLocalStorage(clients);
+        chargerClients();
+        
+        document.getElementById('client-form').reset();
+        const addButton = document.querySelector('#client-form button');
+        addButton.textContent = 'Ajouter Client';
+        addButton.onclick = ajouterClient;
+        
+        alert('Client modifié avec succès !');
+      }
+    }
+
+    function supprimerClient(id) {
+      if (confirm(`Êtes-vous sûr de vouloir supprimer ce client ?`)) {
+        let clients = loadClientsFromLocalStorage();
+        clients = clients.filter(client => client.id !== id);
+        saveClientsToLocalStorage(clients);
+        chargerClients();
+        alert(`Client supprimé avec succès.`);
+      }
+    }
+
+    function chargerClients() {
+      const clients = loadClientsFromLocalStorage();
+      const table = document.getElementById('clients-table').getElementsByTagName('tbody')[0];
+      const datalist = document.getElementById('clients-list');
+      
+      table.innerHTML = '';
+      datalist.innerHTML = '';
+      
+      clients.forEach(client => {
+        const newRow = table.insertRow();
+        newRow.innerHTML = `
+          <td>${client.nom}</td>
+          <td>${client.adresse}</td>
+          <td>${client.codePostal}</td>
+          <td>${client.ville}</td>
+          <td>
+            <button onclick="editerClient(${client.id})">Éditer</button>
+            <button onclick="supprimerClient(${client.id})">Supprimer</button>
+          </td>
+        `;
+
+        const option = document.createElement('option');
+        option.value = client.nom;
+        datalist.appendChild(option);
+      });
+    }
+
+    function ajouterPrestationsPredefinies() {
+      const prestationsPredefinies = [
+        { nom: "Visite du Coeur de Ville (Charleville-Mezieres)", description: "Découvrez le centre historique de Charleville-Mézières", duree: 2 },
+        { nom: "Visite de la Basilique de Charleville-Mezieres", description: "Explorez la magnifique Basilique Notre-Dame d'Espérance", duree: 1.5 },
+        { nom: "Visite du Chateau fort de Sedan", description: "Plongez dans l'histoire du plus grand château fort d'Europe", duree: 2.5 },
+        { nom: "Visite de la ville de Sedan", description: "Découvrez les trésors cachés de Sedan", duree: 2 },
+        { nom: "Visite flash de Charleville-Mezieres", description: "Un tour rapide des principaux sites de Charleville-Mézières", duree: 1 },
+        { nom: "Traduction en langue Allemande", description: "Service de traduction vers l'allemand", duree: 1 },
+        { nom: "Traduction en langue Anglaise", description: "Service de traduction vers l'anglais", duree: 1 },
+        { nom: "Traduction en langue Francaise", description: "Service de traduction vers le français", duree: 1 }
+      ];
+
+      const prestationsExistantes = loadPrestationsFromLocalStorage();
+      let added = false;
+
+      prestationsPredefinies.forEach(prestation => {
+        if (!prestationsExistantes.some(p => p.nom === prestation.nom)) {
+          prestation.id = Date.now() + Math.random();
+          prestationsExistantes.push(prestation);
+          added = true;
+        }
+      });
+
+      if (added) {
+        savePrestationsToLocalStorage(prestationsExistantes);
+        chargerPrestations();
+      }
+
+      updatePrestationDatalist();
+    }
+
+    function loadPrestationsFromLocalStorage() {
+      return JSON.parse(localStorage.getItem('prestations')) || [];
+    }
+
+    function savePrestationsToLocalStorage(prestations) {
+      localStorage.setItem('prestations', JSON.stringify(prestations));
+    }
+
+    function updatePrestationDatalist() {
+      const prestations = loadPrestationsFromLocalStorage();
+      const datalist = document.getElementById('prestations');
+      datalist.innerHTML = '';
+      prestations.forEach(prestation => {
+        const option = document.createElement('option');
+        option.value = prestation.nom;
+        datalist.appendChild(option);
+      });
+    }
+
+    function chargerPrestations() {
+      const prestations = loadPrestationsFromLocalStorage();
+      const table = document.getElementById('visites-guidees-table').getElementsByTagName('tbody')[0];
+      
+      table.innerHTML = '';
+      
+      prestations.forEach(prestation => {
+        const newRow = table.insertRow();
+        newRow.innerHTML = `
+          <td>${prestation.nom}</td>
+          <td>${prestation.description}</td>
+          <td>${prestation.duree} heures</td>
+          <td>
+            <button onclick="editerPrestation(${prestation.id})">Éditer</button>
+            <button onclick="supprimerPrestation(${prestation.id})">Supprimer</button>
+          </td>
+        `;
+      });
+    }
+
+    function ajouterVisiteGuidee() {
+      const form = document.getElementById('visite-guidee-form');
+      const nouvelleVisite = {
+        id: Date.now(),
+        nom: form['new-visite-name'].value,
+        description: form['new-visite-description'].value,
+        duree: form['new-visite-duration'].value
+      };
+
+      const prestations = loadPrestationsFromLocalStorage();
+      
+      if (prestations.some(v => v.nom === nouvelleVisite.nom)) {
+        alert('Une prestation avec ce nom existe déjà !');
+        return;
+      }
+
+      prestations.push(nouvelleVisite);
+      savePrestationsToLocalStorage(prestations);
+      form.reset();
+      chargerPrestations();
+      alert('Prestation ajoutée avec succès !');
+    }
+
+    function editerPrestation(id) {
+      const prestations = loadPrestationsFromLocalStorage();
+      const prestation = prestations.find(p => p.id === id);
+      
+      if (prestation) {
+        document.getElementById('new-visite-name').value = prestation.nom;
+        document.getElementById('new-visite-description').value = prestation.description;
+        document.getElementById('new-visite-duration').value = prestation.duree;
+        
+        const addButton = document.querySelector('#visite-guidee-form button');
+        addButton.textContent = 'Modifier Prestation';
+        addButton.onclick = function() { modifierPrestation(id); };
+      }
+    }
+
+    function modifierPrestation(id) {
+      const prestations = loadPrestationsFromLocalStorage();
+      const index = prestations.findIndex(p => p.id === id);
+      
+      if (index !== -1) {
+        prestations[index] = {
+          id: id,
+          nom: document.getElementById('new-visite-name').value,
+          description: document.getElementById('new-visite-description').value,
+          duree: document.getElementById('new-visite-duration').value
+        };
+        
+        savePrestationsToLocalStorage(prestations);
+        chargerPrestations();
+        updatePrestationDatalist();
+        
+        document.getElementById('visite-guidee-form').reset();
+        const addButton = document.querySelector('#visite-guidee-form button');
+        addButton.textContent = 'Ajouter Prestation';
+        addButton.onclick = ajouterVisiteGuidee;
+        
+        alert('Prestation modifiée avec succès !');
+      }
+    }
+
+    function supprimerPrestation(id) {
+      if (confirm(`Êtes-vous sûr de vouloir supprimer cette prestation ?`)) {
+        let prestations = loadPrestationsFromLocalStorage();
+        prestations = prestations.filter(prestation => prestation.id !== id);
+        savePrestationsToLocalStorage(prestations);
+        chargerPrestations();
+        updatePrestationDatalist();
+        alert(`Prestation supprimée avec succès.`);
+      }
+    }
+
+    function genererPDF(doc) {
+      const { jsPDF } = window.jspdf;
+      const pdfDoc = new jsPDF();
+
+      const logoSvg = `
+        <svg width="40" height="40" viewBox="0 0 50 50">
+          <defs>
+            <linearGradient id="grad1" x1="0%" y1="0%" x2="100%" y2="100%">
+              <stop offset="0%" style="stop-color:#3498db;stop-opacity:1"></stop>
+              <stop offset="100%" style="stop-color:#2c3e50;stop-opacity:1"></stop>
+            </linearGradient>
+          </defs>
+          <path d="M25,2 A23,23 0 0,1 25,48 A23,23 0 0,1 25,2 Z" fill="url(#grad1)"></path>
+          <path d="M16,15 L34,15 A9,9 0 0,1 34,33 L16,33 A9,9 0 0,1 16,15 Z" fill="white"></path>
+          <text x="50%" y="50%" dominant-baseline="middle" text-anchor="middle" fill="#2c3e50" font-size="18" font-weight="bold" font-family="Arial">BC</text>
+        </svg>
+      `;
+      pdfDoc.addSvgAsImage(logoSvg, 10, 10, 30, 30);
+
+      pdfDoc.setFontSize(18);
+      pdfDoc.setTextColor(44, 62, 80);
+      pdfDoc.text('BEREK Consulting', 10, 20);
+      pdfDoc.setFontSize(10);
+      pdfDoc.setTextColor(52, 73, 94);
+      pdfDoc.text('5 RUE AMBROISE CROIZAT', 10, 30);
+      pdfDoc.text('08000 VILLERS-SEMEUSE', 10, 35);
+      pdfDoc.text('SIRET : 500 359 880 00027', 10, 40);
+      pdfDoc.text('+33 695 608 898', 10, 45);
+      pdfDoc.text('vp.philippeberek@gmail.com', 10, 50);
+
+      pdfDoc.setFontSize(12);
+      pdfDoc.setTextColor(44, 62, 80);
+      pdfDoc.text('Client:', 130, 20);
+      pdfDoc.setTextColor(52, 73, 94);
+      pdfDoc.text(doc['nom-client'], 130, 30);
+      pdfDoc.text(doc['adresse-client'], 130, 35);
+      pdfDoc.text(`${doc['code-postal']} ${doc['ville']}`, 130, 40);
+
+      const currentDate = new Date().toLocaleDateString('fr-FR');
+      pdfDoc.setFontSize(16);
+      pdfDoc.setTextColor(44, 62, 80);
+      pdfDoc.text(`${doc.type} N° ${doc['numero-document']}`, 10, 70);
+      pdfDoc.setFontSize(12);
+      pdfDoc.text(`Date: ${currentDate}`, 10, 80);
+
+      pdfDoc.setFontSize(12);
+      pdfDoc.setTextColor(44, 62, 80);
+      pdfDoc.text('Détails de la prestation:', 10, 90);
+
+      const data = [
+        [
+          `${doc['prestation']}\nDate: ${doc['date-prestation']}\nHeure de début: ${doc['heure-debut']}\nLangue: ${doc['langue-prestation']}\n\nDescription détaillée:\n${getDescriptionDetaillee(doc['prestation'])}`,
+          `${doc['tarif-horaire']} €`,
+          doc['quantite-heure'],
+          `${(doc['tarif-horaire'] * doc['quantite-heure']).toFixed(2)} €`
+        ],
+      ];
+
+      if (doc['frais-deplacement'] === 'on') {
+        data.push(['Frais de déplacement', '-', '-', `${doc['frais-deplacement-montant']} €`]);
+      }
+
+      pdfDoc.autoTable({
+        startY: 100,
+        head: [['Prestation', 'Tarif horaire', 'Quantité', 'Montant']],
+        body: data,
+        theme: 'striped',
+        headStyles: { fillColor: [44, 62, 80], textColor: 255 },
+        bodyStyles: { textColor: 52 },
+        columnStyles: {
+          0: { cellWidth: 'auto', cellPadding: 2 },
+        },
+        didParseCell: function(data) {
+          if (data.section === 'body' && data.column.index === 0) {
+            data.cell.styles.cellPadding = 2;
+          }
+        },
+      });
+
+      const finalY = pdfDoc.lastAutoTable.finalY || 150;
+      pdfDoc.setFontSize(14);
+      pdfDoc.setTextColor(44, 62, 80);
+      pdfDoc.text(`Montant total: ${doc.montant} €`, 10, finalY + 20);
+
+      pdfDoc.setFontSize(10);
+      pdfDoc.setTextColor(52, 73, 94);
+      pdfDoc.text(doc.tvaMention, 10, finalY + 30);
+
+      if (doc.type === 'Facture') {
+        pdfDoc.setFontSize(10);
+        pdfDoc.setTextColor(44, 62, 80);
+        pdfDoc.text('Coordonnées bancaires:', 10, finalY + 40);
+        pdfDoc.setTextColor(52, 73, 94);
+        pdfDoc.text('LCL FR68 3000 2061 0000 0039 6485 D72', 10, finalY + 45);
+        pdfDoc.text('CRLYFRPP', 10, finalY + 50);
+      }
+
+      pdfDoc.setFontSize(8);
+      pdfDoc.setTextColor(149, 165, 166);
+      pdfDoc.text('BEREK Consulting - Document généré automatiquement', 10, 280);
+
+      pdfDoc.save(`${doc.type}_${doc['numero-document']}.pdf`);
+    }
+
+    function getDescriptionDetaillee(prestationNom) {
+      const prestations = loadPrestationsFromLocalStorage();
+      const prestation = prestations.find(p => p.nom === prestationNom);
+      return prestation ? prestation.description : 'Aucune description disponible';
+    }
+
+    function genererDevis() {
+      const formData = new FormData(document.getElementById('document-form'));
+      const devis = Object.fromEntries(formData.entries());
+      devis.type = 'Devis';
+      devis.montant = calculerMontantTotal(devis);
+      devis.tvaMention = 'TVA non applicable Art.293b du CGI';
+      ajouterDocument(devis);
+      genererPDF(devis);
+      alert('Devis généré avec succès !');
+    }
+
+    function genererFacture() {
+      const formData = new FormData(document.getElementById('document-form'));
+      const facture = Object.fromEntries(formData.entries());
+      facture.type = 'Facture';
+      facture.montant = calculerMontantTotal(facture);
+      facture.tvaMention = 'TVA non applicable Art.293b du CGI';
+      ajouterDocument(facture);
+      genererPDF(facture);
+      alert('Facture générée avec succès !');
+    }
+
+    function calculerMontantTotal(doc) {
+      let total = doc['tarif-horaire'] * doc['quantite-heure'];
+      if (doc['frais-deplacement'] === 'on') {
+        total += parseFloat(doc['frais-deplacement-montant'] || 0);
+      }
+      return total.toFixed(2);
+    }
+  </script>
+</body>
+</html>
