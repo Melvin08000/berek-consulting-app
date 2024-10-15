@@ -1,1 +1,0 @@
-# berek-consulting-app
